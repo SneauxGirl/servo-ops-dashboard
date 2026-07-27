@@ -1,4 +1,6 @@
+import { Container, Stack, Typography} from "@mui/material";
 import { useAppSelector } from "../app/hooks";
+import { WorkOrderList } from "../features/workOrders/components/WorkOrdersList";
 
 export function WorkOrders() {
     const workOrders = useAppSelector(
@@ -6,21 +8,20 @@ export function WorkOrders() {
     );
 
     return (
-        <main>
-        <h1>Work Orders</h1>
-        <p>
-            {workOrders.length}work orders
-        </p>
-        <ul>
-            {workOrders.map((workOrder) => (
-                <li key={workOrder.id}>
-                    <h2>{workOrder.partName}</h2>
-                    <p>ID: {workOrder.id}</p>
-                    <p>Stage: {workOrder.stage}</p>
-                    <p>Priority: {workOrder.priority}</p>
-                </li>
-            ))}
-        </ul>
-        </main>
+        <Container component="main" maxWidth="lg" sx={{ py: 4 }}>
+      <Stack spacing={3}>
+        <div>
+          <Typography component="h1" variant="h4">
+            Work Orders
+          </Typography>
+
+          <Typography color="text.secondary">
+            {workOrders.length} work orders
+          </Typography>
+        </div>
+
+        <WorkOrderList workOrders={workOrders} />
+      </Stack>
+    </Container>
     );
     }
