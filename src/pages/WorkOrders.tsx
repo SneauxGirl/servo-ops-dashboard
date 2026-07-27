@@ -1,9 +1,16 @@
-import { workOrders } from "../features/workOrders/workOrders.data";
+import { useAppSelector } from "../app/hooks";
 
 export function WorkOrders() {
+    const workOrders = useAppSelector(
+        (state) => state.workOrders.items,
+    );
+
     return (
         <main>
         <h1>Work Orders</h1>
+        <p>
+            {workOrders.length}work orders
+        </p>
         <ul>
             {workOrders.map((workOrder) => (
                 <li key={workOrder.id}>
