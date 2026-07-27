@@ -14,7 +14,7 @@ export function SearchBar({
         <TextField 
             fullWidth 
             label="Search Work Orders" 
-            placeholder="Search by part name, part number or id"
+            placeholder="Search by part name, part number or ID"
             value={value} 
             onChange={(e) => onChange(e.target.value)} 
             slotProps={{
