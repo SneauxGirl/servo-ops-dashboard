@@ -3,7 +3,8 @@ import { useMemo, useState } from "react";
 import { useAppSelector } from "../app/hooks";
 import { SearchBar } from "../components/SearchBar";
 import { WorkOrderList } from "../features/workOrders/components/WorkOrdersList";
-import { WorkOrderStageFilter, type StageFilter } from "../features/workOrders/components/workOrderStageFilter";
+import { WorkOrderStageFilter, type StageFilter } from "../features/workOrders/components/WorkOrderStageFilter";
+import { WorkOrderSort, type WorkOrderSortOption, } from "../features/workOrders/components/WorkOrderSort";
 
 export function WorkOrders() {
     const workOrders = useAppSelector(
@@ -12,6 +13,7 @@ export function WorkOrders() {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedStage, setSelectedStage] = useState<StageFilter>("all");
+    const [sortBy, setSortBy] = useState<WorkOrderSortOption>("partName");
 
     const stages = useMemo(() =>
         Array.from(
@@ -24,7 +26,7 @@ export function WorkOrders() {
     const filteredWorkOrders = useMemo(() => {
         const query = searchTerm.trim().toLowerCase();
 
-        return workOrders.filter((workOrder) => {
+       const filtered = workOrders.filter((workOrder) => {
             const matchesSearch =
                 !query ||
                 workOrder.id.toLowerCase().includes(query) ||
@@ -36,8 +38,29 @@ export function WorkOrders() {
                 workOrder.stage === selectedStage;
 
             return matchesSearch && matchesStage;
-        });
-    }, [searchTerm, workOrders, selectedStage]);
+            });
+
+            return filtered.sort((a, b) => {
+                switch (sortBy) {
+                    case "priority": {
+                        const priorityOrder = {
+                            critical: 0,
+                            high: 1,
+                            normal: 2,
+                            low: 3,
+                        };
+
+                        return (
+                            priorityOrder[a.priority] - priorityOrder[b.priority]);
+                    }
+                    
+                    case "stage": return a.stage.localeCompare(b.stage)
+
+                    case "partName": default: return a.partName.localeCompare(b.partName);
+                }
+            });
+   
+    }, [searchTerm, workOrders, selectedStage, sortBy]);
         
 
     return (
@@ -54,12 +77,14 @@ export function WorkOrders() {
         </div>
 
         <Box sx={{display: "grid", gap: 2, 
-                gridTemplateColumns:{xs: "1fr", md: "minmax(0, 2fr) minmax(12rem, 1fr)",
+                gridTemplateColumns:{xs: "1fr", md: "2fr 1fr 1fr",
                 },
             }}
         >
             <SearchBar value={searchTerm} onChange={setSearchTerm}/>
             <WorkOrderStageFilter value={selectedStage} stages={stages} onChange={setSelectedStage} />
+
+            <WorkOrderSort value={sortBy} onChange={setSortBy}/>
         </Box>
 
         <WorkOrderList workOrders={filteredWorkOrders} />

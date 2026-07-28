@@ -21,8 +21,8 @@ export function WorkOrderCard({
                 </Typography>
             </div>
             <Stack direction="row" spacing={1}>
-                <Chip label={workOrder.stage} size="small" variant="outlined"></Chip>
-                <Chip label={workOrder.priority} size="small" variant="outlined"></Chip>
+                <Chip label={workOrder.stage} size="small" variant="outlined" sx={{ textTransform: "lowercase"}}></Chip>
+                <Chip label={workOrder.priority} size="small" variant="outlined" sx={{ textTransform: "lowercase"}}></Chip>
             </Stack>
             <div>
                 <Typography color="text.secondary" variant="caption">

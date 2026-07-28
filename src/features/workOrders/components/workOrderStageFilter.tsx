@@ -20,8 +20,10 @@ export function WorkOrderStageFilter(
                 value={value} onChange={(e) => onChange(e.target.value as StageFilter)}>
                 <MenuItem value="all">All Stages</MenuItem>
                 {stages.map((stage) => (
-                    <MenuItem key={stage} value={stage} sx={{ textTransform: "capitalize"}} >{stage}</MenuItem>
-                ))}
+                    <MenuItem key={stage} value={stage} 
+                    sx={{ textTransform: "capitalize"}} >{stage}</MenuItem>
+                    //caps added for styling because I like the lower case on chips and don't want to depend on array formatting)
+            ))}
             </Select>
         </FormControl>
     );
