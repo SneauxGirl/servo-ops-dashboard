@@ -16,6 +16,7 @@ export interface WorkOrder {
   material: string
   quantity: number
   completedQuantity: number
+  rejectedQuantity: number
   machine: string
   stage: WorkOrderStage
   priority: WorkOrderPriority
