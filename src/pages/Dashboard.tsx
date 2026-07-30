@@ -185,7 +185,7 @@ export function Dashboard() {
                         ) : (
                             <Stack divider={<Divider flexItem />}>
                                 {attentionWorkOrders.map((workOrder) => (
-                                    <Box component={Link} to={`/work-orders/${workOrder.id}`} sx={{ textDecoration: "none", py: 2, px: 1, borderRadius: 1, transition: "background-color 0.2s", "&:hover": { backgroundColor: "action.hover", }, }}>
+                                    <Box key={workOrder.id} component={Link} to={`/work-orders/${workOrder.id}`} sx={{ textDecoration: "none", py: 2, px: 1, borderRadius: 1, transition: "background-color 0.2s", "&:hover": { backgroundColor: "action.hover", }, }}>
                                         <Stack direction="row" spacing={2} sx={{ justifyContent: "space-between", alignItems: "flex-start", }}>
                                             <Box sx={{ minWidth: 0 }}>
                                                 <Typography variant="subtitle2"
