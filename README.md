@@ -2,6 +2,10 @@
 
 A small manufacturing operations dashboard built with React, Typescript and MUI. Tracks work orders through their production lifecycle with blocked-state handling.
 
+![Dashboard screenshot](./docs/images/Dashboard.png)
+
+**[Live Demo](https://servo-ops-dashboard.vercel.app)**
+
 ## Stack
 
 - React
