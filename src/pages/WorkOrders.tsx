@@ -1,10 +1,11 @@
-import { Box, Container, Stack, Typography} from "@mui/material";
+import { Box, Button, Container, Stack, Typography} from "@mui/material";
 import { useMemo, useState } from "react";
 import { useAppSelector } from "../app/hooks";
 import { SearchBar } from "../components/SearchBar";
 import { WorkOrderList } from "../features/workOrders/components/WorkOrdersList";
 import { WorkOrderStageFilter, type StageFilter } from "../features/workOrders/components/WorkOrderStageFilter";
 import { WorkOrderSort, type WorkOrderSortOption, } from "../features/workOrders/components/WorkOrderSort";
+import { Link } from "react-router";
 
 export function WorkOrders() {
     const workOrders = useAppSelector(
@@ -66,15 +67,20 @@ export function WorkOrders() {
     return (
         <Container component="main" maxWidth="lg" sx={{ py: 4 }}>
       <Stack spacing={3}>
-        <div>
-          <Typography component="h1" variant="h4">
-            Work Orders
-          </Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
+            <div>
+            <Typography component="h1" variant="h4">
+                Work Orders
+            </Typography>
 
-          <Typography color="text.secondary">
-            {filteredWorkOrders.length} work orders
-          </Typography>
-        </div>
+            <Typography color="text.secondary">
+                {filteredWorkOrders.length} work orders
+            </Typography>
+            </div>
+            <Button component={Link} to="/" variant="outlined">
+                View Dashboard
+            </Button>
+        </Box>
 
         <Box sx={{display: "grid", gap: 2, 
                 gridTemplateColumns:{xs: "1fr", md: "2fr 1fr 1fr",
@@ -87,7 +93,14 @@ export function WorkOrders() {
             <WorkOrderSort value={sortBy} onChange={setSortBy}/>
         </Box>
 
-        <WorkOrderList workOrders={filteredWorkOrders} />
+{filteredWorkOrders.length === 0 ? (
+    <Box sx={{ py: 8, textAlign: "center", }}>
+        <Typography variant="h6">
+            No work orders match your current search or filter
+        </Typography>
+    </Box> ): (<WorkOrderList workOrders={filteredWorkOrders} />)
+}
+        
       </Stack>
     </Container>
     );

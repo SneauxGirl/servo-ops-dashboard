@@ -1,14 +1,20 @@
 # Servo
 
-A small manufacturing operations dashboard in React with Typescript and Redux. Planning and dummy data with AI, all other coding by hand.
+A small manufacturing operations dashboard built with React, Typescript and MUI. Tracks work orders through their production lifecycle with blocked-state handling.
 
 ## Stack
 
 - React
-- Typescript
-- Redux (Toolkit, Router)
+- TypeScript
+- Redux (Toolkit, React Router)
 - Material UI
-- Vistest (React Testing Library)
+- Vitest + React Testing Library
+
+## Features
+
+- **Dashboard** — production overview: total/blocked/complete counts, stage distribution, and watchlist
+- **Work Orders** — sortable, filterable list of all work orders
+- **Work Order Details** — full detail view per order, with state change and reason for blocked state
 
 ## Getting Started
 
@@ -17,21 +23,24 @@ A small manufacturing operations dashboard in React with Typescript and Redux. P
 - pnpm
 
 ### Installation
-- Clone the repository
-- Start the dev server: pnpm dev
-- Open your browser to http://localhost:5173 or as listed in your terminal
+1. Clone the repository
+2. Install dependencies: `pnpm install`
+3. Start the dev server: `pnpm dev`
+4. Open your browser to http://localhost:5173 or as listed in your terminal
 
-### Run Tests
+### Project Structure
 
-pnpm test
-
-### Preview
-
-pnpm preview
-
-### Build for Production
-
-pnpm build
+src/
+├── app/ 
+├── components/
+├── features/
+│ └── workOrders/
+│ └── components/
+├── pages/ Dashboard
+│ └── Work Orders
+│ └── Work Order Details
+│ └── 404
+└── services/ (unused - for API hookup. Currently wired to dummy data)
 
 ## Developer
-For more information about this project, please contact Heather Hugo.
+For more information about this project, please contact Heather Hugo (github.com/sneauxgirl).

@@ -7,6 +7,7 @@ import { WorkOrderStageDialog } from '../features/workOrders/components/WorkOrde
 import { updateWorkOrderStage } from '../features/workOrders/workOrders.slice';
 
 import type { WorkOrderStage } from '../features/workOrders/workOrders.types';
+import { workOrderPriorityLabel, workOrderStageLabel } from '../features/workOrders/WorkOrders.constants';
 
 export function WorkOrderDetails() {
     const { id } = useParams<{ id:string }>();
@@ -54,13 +55,9 @@ export function WorkOrderDetails() {
         <>
             <Container component="main" maxWidth="md" sx={{ py:4 }}>
                 <Stack spacing={4}>
-                    <Box>
-                        <Button component={Link} to="/work-orders">
-                            Back to work orders
-                        </Button>
-                    </Box>
-
                     <Stack spacing= {2}>
+                        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
+
                         <Box>
                             <Typography color= "text.secondary" variant="overline">
                                 {workOrder.id}
@@ -72,9 +69,13 @@ export function WorkOrderDetails() {
                                 {workOrder.partNumber}
                             </Typography>
                         </Box>
+                        <Button component={Link} to="/work-orders" variant="outlined">
+                            Back to Work Orders
+                        </Button>
+                            </Box>
                         <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap: "wrap"}}>
-                            <Chip label={ workOrder.priority } sx={{ textTransform: "lowercase"}} />
-                            <Chip label={ workOrder.stage } sx={{ textTransform: "lowercase"}} />
+                            <Chip label={workOrderPriorityLabel[workOrder.priority]} sx={{ textTransform: "lowercase"}} />
+                            <Chip label={workOrderStageLabel[workOrder.stage]} sx={{ textTransform: "lowercase"}} />
                         </Stack>
                             <Button size="small" variant='outlined'
                             sx={{ alignSelf: "flex-start"}}

@@ -3,6 +3,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl,
 
 import type { WorkOrderStage } from "../workOrders.types";
 
+import { workOrderStageLabel } from "../WorkOrders.constants";
+
 interface WorkOrderStageDialogProps {
     currentStage: WorkOrderStage;
     open: boolean;
@@ -42,13 +44,13 @@ export function WorkOrderStageDialog({
             <DialogContent>
                 <FormControl fullWidth sx={{ mt:1 }}>
                     <InputLabel id="work-order-stage-label">Stage</InputLabel>
-                    <Select labelId="work-order-stage-label" label="Stage" value={selectedStage} sx={{ textTransform: "capitalize"}}
+                    <Select labelId="work-order-stage-label" label="Stage" value={selectedStage}
                         onChange={(e) => {setSelectedStage(e.target.value as WorkOrderStage,);
                         }}
                     >
                         {stages.map((stage) => (
-                            <MenuItem key={stage} value={stage} sx={{ textTransform: "capitalize"}}>
-                                {stage}
+                            <MenuItem key={stage} value={stage}>
+                                {workOrderStageLabel[stage]}
                             </MenuItem>
                         ))}
                     </Select>
