@@ -43,8 +43,8 @@ export function WorkOrderStageDialog({
 
             <DialogContent>
                 <FormControl fullWidth sx={{ mt:1 }}>
-                    <InputLabel id="work-order-stage-label">Stage</InputLabel>
-                    <Select labelId="work-order-stage-label" label="Stage" value={selectedStage}
+                    <InputLabel id="change-work-order-stage-label">Stage</InputLabel>
+                    <Select labelId="change-work-order-stage-label" label="Stage" value={selectedStage}
                         onChange={(e) => {setSelectedStage(e.target.value as WorkOrderStage,);
                         }}
                     >

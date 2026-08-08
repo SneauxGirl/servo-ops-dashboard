@@ -65,7 +65,7 @@ export function WorkOrders() {
         
 
     return (
-        <Container component="main" maxWidth="lg" sx={{ py: 4 }}>
+        <Container maxWidth="lg" sx={{ py: 4 }}>
       <Stack spacing={3}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
             <div>

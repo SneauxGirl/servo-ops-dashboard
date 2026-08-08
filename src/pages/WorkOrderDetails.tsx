@@ -22,7 +22,7 @@ export function WorkOrderDetails() {
 
     if (!workOrder) {
         return (
-            <Container component="main" maxWidth= "md" sx= {{ py:4 }} >
+            <Container maxWidth= "md" sx= {{ py:4 }} >
                 <Stack spacing={3}>
                     <Typography component= "h1" variant="h4">
                         Work order not found
@@ -53,7 +53,7 @@ export function WorkOrderDetails() {
 
     return(
         <>
-            <Container component="main" maxWidth="md" sx={{ py:4 }}>
+            <Container maxWidth="md" sx={{ py:4 }}>
                 <Stack spacing={4}>
                     <Stack spacing= {2}>
                         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
@@ -116,7 +116,7 @@ export function WorkOrderDetails() {
                                     Blocked Reason
                                 </Typography>
 
-                                <Typography color='error.main'>
+                                <Typography color='error.dark'>
                                     {workOrder.blockedReason}
                                 </Typography>
                             </Box>

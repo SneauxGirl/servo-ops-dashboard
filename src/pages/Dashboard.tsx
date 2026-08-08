@@ -72,7 +72,7 @@ export function Dashboard() {
     );
 
     return(
-        <Container component="main" maxWidth="lg" sx={{ py: 4 }}>
+        <Container maxWidth="lg" sx={{ py: 4 }}>
             <Stack spacing={3}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
             <div>
@@ -169,6 +169,7 @@ export function Dashboard() {
                                             variant="determinate"
                                             value={percentage}
                                             color={stage === "blocked" ? "error" : "primary"}
+                                            aria-label={`${workOrderStageLabel[stage]}: ${count} of ${metrics.total} work orders`}
                                         />
 
                                     </Box>

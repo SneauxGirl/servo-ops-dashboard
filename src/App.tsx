@@ -1,4 +1,5 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import {Routes, Route} from "react-router";
 import { Dashboard } from "./pages/Dashboard";
@@ -15,13 +16,16 @@ const colors = {
   ink: "#050A14",
   inkTint: "#F0F2F5",
   cyan: "#38BDF8",
+  cyanDark: "#0369A1",
   cyanTint: "#E7F7FE",
   green: "#16A66A",
+  greenDark: "#047857",
   greenTint: "#E7F7F0",
   amber: "#D9A514",
   amberDark: "#8A6500",
   amberTint: "#FFF7D6",
   orange: "#E86A0C",
+  orangeDark: "#C2410C",
   orangeTint: "#FFF0E5",
   purple: "#7138E8",
   purpleTint: "#F0E9FD",
@@ -57,13 +61,13 @@ const theme = createTheme({
     info: {
       main: colors.cyan,
       light: colors.cyanTint,
-      dark: colors.cyan,
+      dark: colors.cyanDark,
       contrastText: colors.ink,
     },
     success: {
       main: colors.green,
       light: colors.greenTint,
-      dark: colors.green,
+      dark: colors.greenDark,
       contrastText: "#FFFFFF",
     },
     warning: {
@@ -75,7 +79,7 @@ const theme = createTheme({
     error: {
       main: colors.orange,
       light: colors.orangeTint,
-      dark: colors.orange,
+      dark: colors.orangeDark,
       contrastText: "#FFFFFF",
     },
     purple: {
@@ -161,15 +165,15 @@ const theme = createTheme({
           props: { color: "info" },
           style: {
             backgroundColor: colors.cyanTint,
-            color: colors.cyan,
+            color: colors.cyanDark,
           },
         },
         {
           props: { color: "info", variant: "outlined" },
           style: {
             backgroundColor: colors.cyanTint,
-            color: colors.cyan,
-            borderColor: colors.cyan,
+            color: colors.cyanDark,
+            borderColor: colors.cyanDark,
           },
         },
         {
@@ -191,15 +195,15 @@ const theme = createTheme({
           props: { color: "success" },
           style: {
             backgroundColor: colors.greenTint,
-            color: colors.green,
+            color: colors.greenDark,
           },
         },
         {
           props: { color: "success", variant: "outlined" },
           style: {
             backgroundColor: colors.greenTint,
-            color: colors.green,
-            borderColor: colors.green,
+            color: colors.greenDark,
+            borderColor: colors.greenDark,
           },
         },
         {
@@ -214,22 +218,22 @@ const theme = createTheme({
           style: {
             backgroundColor: colors.amberTint,
             color: colors.amberDark,
-            borderColor: colors.amber,
+            borderColor: colors.amberDark,
           },
         },
         {
           props: { color: "error" },
           style: {
             backgroundColor: colors.orangeTint,
-            color: colors.orange,
+            color: colors.orangeDark,
           },
         },
         {
           props: { color: "error", variant: "outlined" },
           style: {
             backgroundColor: colors.orangeTint,
-            color: colors.orange,
-            borderColor: colors.orange,
+            color: colors.orangeDark,
+            borderColor: colors.orangeDark,
           },
         },
       ],
@@ -241,14 +245,52 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <main>
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/work-orders" element={<WorkOrders />} />
-      <Route path="/work-orders/:id" element={<WorkOrderDetails />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-      </main>
+      <Box
+        component="a"
+        href="#main-content"
+        sx={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          border: 0,
+          "&:focus": {
+            position: "fixed",
+            top: 16,
+            left: 16,
+            zIndex: theme.zIndex.tooltip,
+            width: "auto",
+            height: "auto",
+            margin: 0,
+            padding: theme.spacing(1.5, 2),
+            overflow: "visible",
+            clip: "auto",
+            whiteSpace: "normal",
+            borderRadius: 1,
+            backgroundColor: "background.paper",
+            color: "primary.main",
+            outline: `2px solid ${colors.primary}`,
+            outlineOffset: 2,
+            textDecoration: "none",
+            typography: "body2",
+            fontWeight: 500,
+          },
+        }}
+      >
+        Skip to main content
+      </Box>
+      <Box component="main" id="main-content" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/work-orders" element={<WorkOrders />} />
+          <Route path="/work-orders/:id" element={<WorkOrderDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Box>
     </ThemeProvider>
   );
 }

@@ -21,7 +21,7 @@ export function SearchBar({
                 input: { 
                     startAdornment: (
                         <InputAdornment position="start">
-                            <Search />
+                            <Search aria-hidden={true} />
                         </InputAdornment>
                     ),
                 },

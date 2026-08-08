@@ -6,7 +6,7 @@ import { Link as RouterLink } from "react-router"
 
 export function NotFound() {
   return (
-    <Container component="main" maxWidth="sm" sx={{ py: 10 }}>
+    <Container maxWidth="sm" sx={{ py: 10 }}>
       <Stack spacing={4} sx={{ alignItems: "center", textAlign: "center", }}>
         <Box>
           <Typography variant="overline" color="text.secondary">404</Typography>
@@ -22,28 +22,45 @@ export function NotFound() {
           </Typography>
           <Stack spacing={2} sx={{ alignItems: "flex-start",
           }}>
-            <Link href="https://hjhugo.com" target="blank" rel="noreferrer" underline="hover" 
-                              sx={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: 0.75,
-                            }}>
-              <LanguageOutlinedIcon fontSize="small" />Portfolio
-            </Link>
-            <Link href="https://www.linkedin.com/in/hjhugo" underline="hover"
+            <Link
+              href="https://hjhugo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
               sx={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: 0.75,
-                            }}>
-              <LinkedInIcon fontSize="small" />LinkedIn
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.75,
+              }}
+            >
+              <LanguageOutlinedIcon fontSize="small" aria-hidden={true} />
+              Portfolio
             </Link>
-            <Link href="mailto:heatherh@liyudev.com" underline="hover" sx={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: 0.75,
-                            }}>
-              <EmailOutlinedIcon fontSize="small" />Email
+            <Link
+              href="https://www.linkedin.com/in/hjhugo"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.75,
+              }}
+            >
+              <LinkedInIcon fontSize="small" aria-hidden={true} />
+              LinkedIn
+            </Link>
+            <Link
+              href="mailto:heatherh@liyudev.com"
+              underline="hover"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.75,
+              }}
+            >
+              <EmailOutlinedIcon fontSize="small" aria-hidden={true} />
+              Email
             </Link>
           </Stack>
         </Stack>
