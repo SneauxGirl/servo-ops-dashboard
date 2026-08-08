@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Container, Card, CardContent, Box, Stack, Typography, Button, Chip, LinearProgress, Paper, Divider } from "@mui/material";
 import { Link } from "react-router";
 import { useAppSelector } from "../app/hooks";
-import { workOrderPriorityLabel, workOrderStageLabel } from "../features/workOrders/WorkOrders.constants";
+import { workOrderPriorityLabel, workOrderStageChipColor, workOrderStageLabel } from "../features/workOrders/WorkOrders.constants";
 
 import type { WorkOrder, WorkOrderStage, WorkOrderPriority } from "../features/workOrders/workOrders.types";
 
@@ -73,7 +73,7 @@ export function Dashboard() {
 
     return(
         <Container component="main" maxWidth="lg" sx={{ py: 4 }}>
-            <Stack spacing={4}>
+            <Stack spacing={3}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", }}>
             <div>
             <Typography component="h1" variant="h4">
@@ -141,8 +141,7 @@ export function Dashboard() {
                         </CardContent>
                     </Card>
                 </Box>
-                <Box>
-                    <Paper variant="outlined" sx={{ p: 3}}>
+                <Paper variant="outlined" sx={{ p: 3}}>
                         <Typography component="h2" variant="h6">
                             Work Orders by Stage
                         </Typography>
@@ -166,7 +165,11 @@ export function Dashboard() {
                                             </Typography>
                                         </Stack>
 
-                                        <LinearProgress variant="determinate" value={percentage}/>
+                                        <LinearProgress
+                                            variant="determinate"
+                                            value={percentage}
+                                            color={stage === "blocked" ? "error" : "primary"}
+                                        />
 
                                     </Box>
                                 );
@@ -200,7 +203,7 @@ export function Dashboard() {
                                                 </Typography>
                                             </Box>
                                             <Stack spacing={0.75} sx={{ alignItems: "flex-end", flexShrink: 0, }}>
-                                                <Chip label={workOrderStageLabel[workOrder.stage]} size="small" variant="outlined" sx={{ textTransform: "lowercase" }}/>
+                                                <Chip label={workOrderStageLabel[workOrder.stage]} color={workOrderStageChipColor[workOrder.stage]} size="small" variant="outlined" sx={{ textTransform: "lowercase" }}/>
                                                 <Chip label={workOrderPriorityLabel[workOrder.priority]} size="small" variant="outlined" sx={{ textTransform: "lowercase" }}/>
                                             </Stack>
                                         </Stack>
@@ -209,7 +212,6 @@ export function Dashboard() {
                             </Stack>
                         )}
                     </Paper>
-                </Box>
             </Stack>
         </Container>
     )

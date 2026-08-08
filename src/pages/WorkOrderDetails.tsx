@@ -7,7 +7,7 @@ import { WorkOrderStageDialog } from '../features/workOrders/components/WorkOrde
 import { updateWorkOrderStage } from '../features/workOrders/workOrders.slice';
 
 import type { WorkOrderStage } from '../features/workOrders/workOrders.types';
-import { workOrderPriorityLabel, workOrderStageLabel } from '../features/workOrders/WorkOrders.constants';
+import { workOrderPriorityLabel, workOrderStageChipColor, workOrderStageLabel } from '../features/workOrders/WorkOrders.constants';
 
 export function WorkOrderDetails() {
     const { id } = useParams<{ id:string }>();
@@ -75,7 +75,7 @@ export function WorkOrderDetails() {
                             </Box>
                         <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap: "wrap"}}>
                             <Chip label={workOrderPriorityLabel[workOrder.priority]} sx={{ textTransform: "lowercase"}} />
-                            <Chip label={workOrderStageLabel[workOrder.stage]} sx={{ textTransform: "lowercase"}} />
+                            <Chip label={workOrderStageLabel[workOrder.stage]} color={workOrderStageChipColor[workOrder.stage]} sx={{ textTransform: "lowercase"}} />
                         </Stack>
                             <Button size="small" variant='outlined'
                             sx={{ alignSelf: "flex-start"}}

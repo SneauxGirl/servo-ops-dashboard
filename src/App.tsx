@@ -6,11 +6,234 @@ import { WorkOrders } from "./pages/WorkOrders";
 import { WorkOrderDetails } from "./pages/WorkOrderDetails";
 import { NotFound } from "./pages/NotFound";
 
+/** Light-mode engineering color tokens mapped into the MUI palette. */
+const colors = {
+  primary: "#1748E8",
+  primaryChange: "#155EEF",
+  primaryTint: "#E8EDFF",
+  primaryChangeTint: "#E9F0FF",
+  ink: "#050A14",
+  inkTint: "#F0F2F5",
+  cyan: "#38BDF8",
+  cyanTint: "#E7F7FE",
+  green: "#16A66A",
+  greenTint: "#E7F7F0",
+  amber: "#D9A514",
+  amberDark: "#8A6500",
+  amberTint: "#FFF7D6",
+  orange: "#E86A0C",
+  orangeTint: "#FFF0E5",
+  purple: "#7138E8",
+  purpleTint: "#F0E9FD",
+  surface: "#F5F5F5",
+} as const;
 
+function toColorVarName(key: string) {
+  return `--color-${key.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`;
+}
+
+const colorVars = {
+  ...Object.fromEntries(
+    Object.entries(colors).map(([key, value]) => [toColorVarName(key), value]),
+  ),
+  "--color-surface-bg": `color-mix(in srgb, ${colors.surface} 28%, white)`,
+} as const;
 
 const theme = createTheme({
   palette: {
     mode: "light",
+    primary: {
+      main: colors.primary,
+      dark: colors.primaryChange,
+      light: colors.primaryTint,
+      contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: colors.ink,
+      light: colors.inkTint,
+      dark: colors.ink,
+      contrastText: "#FFFFFF",
+    },
+    info: {
+      main: colors.cyan,
+      light: colors.cyanTint,
+      dark: colors.cyan,
+      contrastText: colors.ink,
+    },
+    success: {
+      main: colors.green,
+      light: colors.greenTint,
+      dark: colors.green,
+      contrastText: "#FFFFFF",
+    },
+    warning: {
+      main: colors.amber,
+      light: colors.amberTint,
+      dark: colors.amberDark,
+      contrastText: colors.amberDark,
+    },
+    error: {
+      main: colors.orange,
+      light: colors.orangeTint,
+      dark: colors.orange,
+      contrastText: "#FFFFFF",
+    },
+    purple: {
+      main: colors.purple,
+      light: colors.purpleTint,
+      dark: colors.purple,
+      contrastText: "#FFFFFF",
+    },
+    text: {
+      primary: colors.ink,
+    },
+    background: {
+      default: "var(--color-surface-bg)",
+      paper: "#FFFFFF",
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        ":root": colorVars,
+        "h1.MuiTypography-root.MuiTypography-h4": {
+          fontWeight: 600,
+        },
+        "h2.MuiTypography-root.MuiTypography-h6": {
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "outlined", color: "primary" },
+          style: {
+            "@media (hover: hover)": {
+              "&:hover": {
+                backgroundColor: colors.primaryChangeTint,
+                borderColor: colors.primaryChange,
+                color: colors.primaryChange,
+              },
+            },
+            "&:active": {
+              backgroundColor: colors.primaryChangeTint,
+              borderColor: colors.primaryChange,
+              color: colors.primaryChange,
+            },
+          },
+        },
+        {
+          props: { variant: "text", color: "primary" },
+          style: {
+            "@media (hover: hover)": {
+              "&:hover": {
+                backgroundColor: colors.primaryChangeTint,
+                color: colors.primaryChange,
+              },
+            },
+            "&:active": {
+              backgroundColor: colors.primaryChangeTint,
+              color: colors.primaryChange,
+            },
+          },
+        },
+      ],
+    },
+    MuiChip: {
+      variants: [
+        {
+          props: { color: "primary" },
+          style: {
+            backgroundColor: colors.primaryTint,
+            color: colors.primary,
+          },
+        },
+        {
+          props: { color: "primary", variant: "outlined" },
+          style: {
+            backgroundColor: colors.primaryTint,
+            color: colors.primary,
+            borderColor: colors.primary,
+          },
+        },
+        {
+          props: { color: "info" },
+          style: {
+            backgroundColor: colors.cyanTint,
+            color: colors.cyan,
+          },
+        },
+        {
+          props: { color: "info", variant: "outlined" },
+          style: {
+            backgroundColor: colors.cyanTint,
+            color: colors.cyan,
+            borderColor: colors.cyan,
+          },
+        },
+        {
+          props: { color: "purple" },
+          style: {
+            backgroundColor: colors.purpleTint,
+            color: colors.purple,
+          },
+        },
+        {
+          props: { color: "purple", variant: "outlined" },
+          style: {
+            backgroundColor: colors.purpleTint,
+            color: colors.purple,
+            borderColor: colors.purple,
+          },
+        },
+        {
+          props: { color: "success" },
+          style: {
+            backgroundColor: colors.greenTint,
+            color: colors.green,
+          },
+        },
+        {
+          props: { color: "success", variant: "outlined" },
+          style: {
+            backgroundColor: colors.greenTint,
+            color: colors.green,
+            borderColor: colors.green,
+          },
+        },
+        {
+          props: { color: "warning" },
+          style: {
+            backgroundColor: colors.amberTint,
+            color: colors.amberDark,
+          },
+        },
+        {
+          props: { color: "warning", variant: "outlined" },
+          style: {
+            backgroundColor: colors.amberTint,
+            color: colors.amberDark,
+            borderColor: colors.amber,
+          },
+        },
+        {
+          props: { color: "error" },
+          style: {
+            backgroundColor: colors.orangeTint,
+            color: colors.orange,
+          },
+        },
+        {
+          props: { color: "error", variant: "outlined" },
+          style: {
+            backgroundColor: colors.orangeTint,
+            color: colors.orange,
+            borderColor: colors.orange,
+          },
+        },
+      ],
+    },
   },
 });
 

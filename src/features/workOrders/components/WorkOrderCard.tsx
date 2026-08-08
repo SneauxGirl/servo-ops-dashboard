@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardContent, Chip, Stack, Typography } from "@mui/material";
 import type { WorkOrder } from "../workOrders.types";
-import { workOrderPriorityLabel, workOrderStageLabel} from "../WorkOrders.constants";
+import { workOrderPriorityLabel, workOrderStageChipColor, workOrderStageLabel} from "../WorkOrders.constants";
 import { Link } from "react-router";
 
 interface WorkOrderCardProps {
@@ -24,7 +24,7 @@ export function WorkOrderCard({
                         </Typography>
                     </div>
                     <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap: "wrap" }}>
-                        <Chip label={workOrderStageLabel[workOrder.stage]} size="small" variant="outlined" sx={{ textTransform: "lowercase"}} />
+                        <Chip label={workOrderStageLabel[workOrder.stage]} color={workOrderStageChipColor[workOrder.stage]} size="small" variant="outlined" sx={{ textTransform: "lowercase"}} />
                         <Chip label={workOrderPriorityLabel[workOrder.priority]} size="small" variant="outlined" sx={{ textTransform: "lowercase"}} />
                     </Stack>
                     <div>
