@@ -147,6 +147,13 @@ const theme = createTheme({
     MuiChip: {
       variants: [
         {
+          props: { color: "default", variant: "filled" },
+          style: {
+            backgroundColor: colors.inkTint,
+            color: colors.ink,
+          },
+        },
+        {
           props: { color: "primary" },
           style: {
             backgroundColor: colors.primaryTint,
